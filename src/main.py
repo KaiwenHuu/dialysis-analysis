@@ -2,7 +2,12 @@ import sys
 import pandas as pd
 import numpy as np
 
+from utils import (
+    load_dataset
+)
+
 PATH = "../data/"
+FILENAME = "dialysis"
 
 def add_animal(farm, animal):
     farm.add(animal)
@@ -10,10 +15,10 @@ def add_animal(farm, animal):
 
 def main(animals):
     farm = set()
-    df = pd.DataFrame()
     
-    print(df)
-    print(pd.read_csv(PATH+"dialysis.csv", encoding="ISO-8859-1"))
+    data = load_dataset(PATH, FILENAME)
+    # print(data)
+    # print(pd.read_csv(PATH+"dialysis.csv", encoding="ISO-8859-1"))
     # clean_data.print_string("hello world")
     for animal in animals:
         farm = add_animal(farm, animal)
