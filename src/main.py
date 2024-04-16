@@ -16,10 +16,9 @@ def add_animal(farm, animal):
 def main(animals):
     farm = set()
     
-    data = load_dataset(PATH, FILENAME)
-    # print(data)
-    # print(pd.read_csv(PATH+"dialysis.csv", encoding="ISO-8859-1"))
-    # clean_data.print_string("hello world")
+    X, y = load_dataset(PATH, FILENAME)
+    print(X.shape)
+    print(y.shape)
     for animal in animals:
         farm = add_animal(farm, animal)
     print("We've got some animals on the farm:", ','.join(farm) + '.')
