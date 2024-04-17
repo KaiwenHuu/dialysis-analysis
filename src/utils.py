@@ -25,7 +25,6 @@ def load_dataset(path, filename):
             f.write(f"Unique values in '{column}': {unique_values}\n")
     
     for bin in binary:
-        print(bin)
         data[bin] = np.where(data[bin] == True, 1, 0)
 
     # data_with_categ = pd.concat([
