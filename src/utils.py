@@ -19,23 +19,20 @@ def load_dataset(path, filename):
         with zip_ref.open(f"{filename}.csv") as file:
             data = pd.read_csv(file)
 
+    # write all variables into a text file
     with open(f"{path}unique_values.txt", 'w') as f:
         for column in data.columns:
             unique_values = data[column].unique()
             f.write(f"Unique values in '{column}': {unique_values}\n")
     
+    # change true false to 0, 1
     for bin in binary:
         data[bin] = np.where(data[bin] == True, 1, 0)
 
-    # data_with_categ = pd.concat([
-    #     data.drop(columns=categ), # dataset without the categorical features
-    #     pd.get_dummies(data[categ], columns=categ, drop_first=False)# categorical features converted to dummies
-    # ], axis=1)
-
-    # data_with_categ[SURVEYDT_F] = pd.to_datetime(data_with_categ[SURVEYDT_F])
-    # data_with_categ[SURVEYDT_F] = (data_with_categ[SURVEYDT_F] - pd.Timestamp("1970-01-01")) // pd.Timedelta('1D')
-    
+    # drop unnecessary columns    
     data = data.drop(columns = drop)
+
+    # observations with nans
     data = data.dropna()
 
     with open(f"{path}unique_values_cleaned.txt", 'w') as f:
