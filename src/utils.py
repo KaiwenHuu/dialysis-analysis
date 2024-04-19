@@ -34,9 +34,9 @@ def load_dataset(path, filename):
 
     # data_with_categ[SURVEYDT_F] = pd.to_datetime(data_with_categ[SURVEYDT_F])
     # data_with_categ[SURVEYDT_F] = (data_with_categ[SURVEYDT_F] - pd.Timestamp("1970-01-01")) // pd.Timedelta('1D')
-
-    data = data.dropna()
+    
     data = data.drop(columns = drop)
+    data = data.dropna()
 
     with open(f"{path}unique_values_cleaned.txt", 'w') as f:
         for column in data.columns:
